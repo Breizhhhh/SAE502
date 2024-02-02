@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNMP Scanner</title>
+    <title>Audit système</title>
     <!-- Ajout du lien vers Bootstrap (à adapter en fonction de votre installation) -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body class="bg-light">
     <div class="container mt-5">
-        <h1 class="mb-4">SNMP Scanner</h1>
+        <h1 class="mb-4">Audit système</h1>
         <!-- Formulaire pour saisir l'adresse IP -->
         <form id="scanForm" method="post">
             <div class="form-group">
                 <label for="ipAddress">Adresse IP :</label>
                 <input type="text" class="form-control" id="ipAddress" name="ipAddress" required>
             </div>
-            <button type="submit" class="btn btn-primary">Lancer le Scan</button>
+            <button type="submit" class="btn btn-primary">Lancer l'audit</button>
         </form>
 
         <!-- Affichage des résultats du scan SNMP ici -->
@@ -57,11 +57,11 @@
             .then(data => {
                 // Mettre à jour le HTML avec les résultats du scan SNMP
                 const resultsDiv = document.getElementById('scanResults');
-                resultsDiv.innerHTML = "<h2 class='mb-3'>Résultats du Scan SNMP</h2>";
+                resultsDiv.innerHTML = "<h2 class='mb-3'>Résultats de l'a</h2>";
 
                 // Afficher les résultats SNMP
                 for (const targetIp in data) {
-                    resultsDiv.innerHTML += `<h3 class='mb-2'>Résultats pour ${targetIp}</h3><ul class='list-group'>`;
+                    resultsDiv.innerHTML += `<h3 class='mb-2'>Performance de la machine : ${targetIp}</h3><ul class='list-group'>`;
                     
                     // Itérer à travers le tableau de résultats
                     data[targetIp].forEach(result => {
@@ -85,7 +85,7 @@
             .then(data => {
                 // Mettre à jour le HTML avec le résultat de la commande SSH
                 const sshResultDiv = document.getElementById('sshResult');
-                sshResultDiv.innerHTML = `<h2 class='mb-3'>Résultat de la commande SSH</h2>`;
+                sshResultDiv.innerHTML = `<h2 class='mb-3'>Liste des paquets</h2>`;
                 
                 // Afficher les lignes du résultat de la commande SSH
                 const sshLines = data.ssh_command_output.split('\n');
@@ -101,7 +101,7 @@
                     const filteredLines = sshLines.filter(line => line.toLowerCase().includes(searchTerm));
 
                     // Afficher les résultats filtrés
-                    sshResultDiv.innerHTML = `<h2 class='mb-3'>Résultat de la commande SSH</h2>`;
+                    sshResultDiv.innerHTML = `<h2 class='mb-3'>Liste des paquets</h2>`;
                     filteredLines.forEach(line => {
                         sshResultDiv.innerHTML += `<p>${line}</p>`;
                     });

@@ -17,7 +17,6 @@ ssh_port = 22
 def map_oid_to_name(oid):
     oid_mappings = {
         '1.3.6.1.4.1.2021.10.1.3.3': 'Charge CPU sur 15 minutes',
-        '1.3.6.1.4.1.2021.4.11.0': 'RAM totale libre',
         '1.3.6.1.4.1.2021.4.5.0': 'RAM totale de la machine',
         '1.3.6.1.4.1.2021.4.6.0': 'RAM totale utilisée'  # Ajoutez d'autres correspondances OID -> Signification au besoin
     }
@@ -87,7 +86,6 @@ def scan():
     target_ip = request.json.get('ipAddress')
     oids_to_get = [
         '1.3.6.1.4.1.2021.10.1.3.3',
-        '1.3.6.1.4.1.2021.4.11.0',
         '1.3.6.1.4.1.2021.4.5.0',
         '1.3.6.1.4.1.2021.4.6.0'
     ]
@@ -106,4 +104,4 @@ def execute_ssh_command():
     return jsonify({'ssh_command_output': ssh_command_output})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='127.0.0.1', port=5000)
